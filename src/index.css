@@ -1,12 +1,25 @@
 @import "tailwindcss";
 
+:root {
+  font-family: Arial, sans-serif;
+  color: #FFFFFF;
+  background: #1B2838;
+}
+
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  background-color: #111827;
-  color: #f9fafb;
-  font-family: Arial, sans-serif;
+  min-width: 320px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
 }
