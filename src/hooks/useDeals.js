@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getDeals, getStores } from "../services/cheapshark";
+import { getDeals, getStores, getGameDetails} from "../services/cheapshark";
 
 export function useDeals(filters = {}) {
   return useQuery({
@@ -13,5 +13,13 @@ export function useStores() {
     queryKey: ["stores"],
     queryFn: getStores,
     staleTime: 1000 * 60 * 60,
+  });
+}
+
+export function useGameDetails(gameID) {
+  return useQuery({
+    queryKey: ["game", gameID],
+    queryFn: () => getGameDetails(gameID),
+    enabled: !!gameID,
   });
 }

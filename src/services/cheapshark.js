@@ -52,3 +52,16 @@ export async function getStores() {
 
   return await response.json();
 }
+
+// Game Details
+export async function getGameDetails(gameID) {
+  const response = await fetch(
+    `${BASE_URL}/games?id=${gameID}`
+  );
+
+  if (!response.ok) {
+    throw new Error("Could not fetch game details.");
+  }
+
+  return await response.json();
+}
