@@ -1,9 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
-import { getDeals } from "../services/cheapshark";
+import { getDeals, getStores } from "../services/cheapshark";
 
-export function useDeals() {
+export function useDeals(filters = {}) {
   return useQuery({
-    queryKey: ["deals"],
-    queryFn: getDeals,
+    queryKey: ["deals", filters],
+    queryFn: () => getDeals(filters),
+  });
+}
+
+export function useStores() {
+  return useQuery({
+    queryKey: ["stores"],
+    queryFn: getStores,
+    staleTime: 1000 * 60 * 60,
   });
 }
