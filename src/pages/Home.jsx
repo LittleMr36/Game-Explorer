@@ -1,16 +1,23 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, Gamepad2, Tag } from "lucide-react";
 
+import GameCard from "../components/GameCard";
+import { useDeals } from "../hooks/useDeals";
+
+
 function Home() {
+
+  const { data, isPending, isError, error, refetch } = useDeals();
+
   return (
     <main className="mx-auto max-w-7xl px-6">
 
       {/* Hero Section */}
-      <section className="flex min-h-[500px] flex-col justify-center py-20">
+      <section className="flex min-h-[450px] flex-col justify-center py-20">
 
         <div className="max-w-3xl">
 
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-blue-600 px-4 py-2 text-sm text-blue-200">
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-blue-500 px-4 py-2 text-sm text-blue-100">
             <Tag size={16} />
             Discover better game deals
           </div>
@@ -28,27 +35,18 @@ function Home() {
             Spend less and play more.
           </p>
 
-          <div className="mt-8 flex flex-wrap gap-4">
+          <Link
+            to="/explore"
+            className="mt-8 inline-flex items-center gap-2 rounded-lg bg-[#66C0F4] px-6 py-3 font-semibold hover:bg-[#006aff]"
+          >
+            Explore Games
+            <ArrowRight size={18} />
+          </Link>
 
-            <Link
-              to="/explore"
-              className="flex items-center gap-2 rounded-lg bg-[#66C0F4] px-6 py-3 font-semibold transition hover:bg-[#006aff]"
-            >
-              Explore Games
-              <ArrowRight size={18} />
-            </Link>
-
-            <a
-              href="#featured"
-              className="rounded-lg border border-gray-600 px-6 py-3 font-semibold transition hover:bg-gray-800"
-            >
-              Discover Deals
-            </a>
-
-          </div>
         </div>
 
       </section>
+
 
       {/* Featured Section */}
       <section id="featured" className="pb-24">
@@ -61,24 +59,56 @@ function Home() {
           <p className="mt-2 text-gray-400">
             Check out some of the best game deals.
           </p>
+
+          <Link
+            to="/explore"
+            className="hidden items-center gap-2 text-purple-400 hover:text-purple-300 sm:flex"
+          >
+            View all
+            <ArrowRight size={18} />
+          </Link>
+
         </div>
 
-        <div className="rounded-xl border border-gray-700 bg-gray-800/50 p-12 text-center">
-
-          <Gamepad2
-            size={48}
-            className="mx-auto mb-4 text-[#66C0F4]"
-          />
-
-          <h3 className="text-xl font-semibold">
-            Games coming soon
-          </h3>
-
-          <p className="mt-2 text-gray-400">
-            We're preparing the best deals for you.
+        {/* Loading State */}
+        {isPending && (
+          <p className="py-12 text-center text-gray-400">
+            Loading game deals...
           </p>
+        )}
 
-        </div>
+        {/* Error State */}
+        {isError && (
+          <div className="rounded-xl border border-red-500/30 bg-red-500/10 p-8 text-center">
+
+            <p className="text-red-400">
+              {error.message}
+            </p>
+
+            <button
+              onClick={() => refetch()}
+              className="mt-4 rounded-lg bg-purple-600 px-5 py-2 hover:bg-purple-500"
+            >
+              Try Again
+            </button>
+
+          </div>
+        )}
+
+        {/* Successful API Response */}
+        {!isPending && !isError && (
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+
+            {data.map((game) => (
+              <GameCard
+                key={game.dealID}
+                game={game}
+              />
+            ))}
+
+          </div>
+        )}
+        
 
       </section>
 
