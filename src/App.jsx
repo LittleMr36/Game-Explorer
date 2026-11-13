@@ -1,5 +1,5 @@
 // import router components
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 
 // import shared components
 import Navbar from "./components/Navbar";
@@ -14,7 +14,7 @@ import GameDetails from "./pages/GameDetails";
 function App() {
   return (
     // set up page navigation
-    <BrowserRouter>
+    <HashRouter>
       <div className="flex min-h-screen flex-col">
 
         {/* display the navigation bar */}
@@ -33,7 +33,7 @@ function App() {
         <Footer />
 
       </div>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
