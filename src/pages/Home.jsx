@@ -60,14 +60,6 @@ function Home() {
             Check out some of the best game deals.
           </p>
 
-          <Link
-            to="/explore"
-            className="hidden items-center gap-2 text-purple-400 hover:text-purple-300 sm:flex"
-          >
-            View all
-            <ArrowRight size={18} />
-          </Link>
-
         </div>
 
         {/* Loading State */}
@@ -87,7 +79,7 @@ function Home() {
 
             <button
               onClick={() => refetch()}
-              className="mt-4 rounded-lg bg-purple-600 px-5 py-2 hover:bg-purple-500"
+              className="mt-4 rounded-lg bg-[#66C0F4] px-5 py-2 hover:bg-[#006aff]"
             >
               Try Again
             </button>

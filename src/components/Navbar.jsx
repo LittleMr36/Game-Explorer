@@ -18,7 +18,7 @@ function Navbar() {
           <NavLink
             to="/"
             className={({ isActive }) =>
-              isActive ? "text-purple-400" : "text-gray-300 hover:text-white"
+              isActive ? "text-[#66C0F4]" : "text-gray-300 hover:text-white"
             }
           >
             Home
@@ -27,7 +27,7 @@ function Navbar() {
           <NavLink
             to="/explore"
             className={({ isActive }) =>
-              isActive ? "text-purple-400" : "text-gray-300 hover:text-white"
+              isActive ? "text-[#66C0F4]" : "text-gray-300 hover:text-white"
             }
           >
             Explore

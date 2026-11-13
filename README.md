@@ -1,16 +1,43 @@
-# React + Vite
+Game Explorer is a web application for discovering video games and finding the best deals on them. It helps users explore available games, compare prices, and find affordable options.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Features:
+Browse and explore video games.
+Find game deals and compare prices.
+View game information and available offers.
+Simple and user-friendly interface.
 
-Currently, two official plugins are available:
+Built With:
+React – Frontend library.
+Vite – Development server and build tool.
+JavaScript – Application logic.
+CSS – Styling and layout.
+CheapShark API – Fetching game deals and prices.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-## React Compiler
+Getting Started
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Prerequisites
+Make sure you have Node.js and npm installed.
 
-## Expanding the ESLint configuration
+Installation
+Clone the repository:
+git clone https://github.com/LittleMr36/Game-Explorer.git
+Navigate to the project directory:
+cd Game-Explorer
+Install dependencies:
+npm install
+Start the development server:
+npm run dev
+Open the local URL displayed in your terminal.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Building for Production
+To create a production build:
+npm run build
+
+
+API
+Game Explorer uses the CheapShark API to retrieve game deals and pricing information.
+
+
+License
+This project is available for personal and educational use.
