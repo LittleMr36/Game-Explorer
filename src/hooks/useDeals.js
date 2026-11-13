@@ -1,6 +1,8 @@
+// import react query and api functions
 import { useQuery } from "@tanstack/react-query";
-import { getDeals, getStores, getGameDetails} from "../services/cheapshark";
+import { getDeals, getStores, getGameDetails } from "../services/cheapshark";
 
+// fetch game deals using the selected filters
 export function useDeals(filters = {}) {
   return useQuery({
     queryKey: ["deals", filters],
@@ -8,6 +10,7 @@ export function useDeals(filters = {}) {
   });
 }
 
+// fetch available game stores
 export function useStores() {
   return useQuery({
     queryKey: ["stores"],
@@ -16,6 +19,7 @@ export function useStores() {
   });
 }
 
+// fetch details for a specific game
 export function useGameDetails(gameID) {
   return useQuery({
     queryKey: ["game", gameID],

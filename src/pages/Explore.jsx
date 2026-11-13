@@ -1,15 +1,18 @@
+// import state and icons
 import { useState } from "react";
 import { Search, SlidersHorizontal } from "lucide-react";
 
+// import components and data hooks
 import GameCard from "../components/GameCard";
 import { useDeals, useStores } from "../hooks/useDeals";
 
+// explore page component
 function Explore() {
-  // Search and filter input states
+  // store search and price inputs
   const [searchInput, setSearchInput] = useState("");
   const [priceInput, setPriceInput] = useState("");
 
-  // Applied filters
+  // store the applied filters
   const [filters, setFilters] = useState({
     title: "",
     storeID: "",
@@ -18,7 +21,7 @@ function Explore() {
     pageNumber: 0,
   });
 
-  // Fetch deals and stores
+  // fetch deals and stores
   const {
     data: deals,
     isPending,
@@ -31,7 +34,7 @@ function Explore() {
     isPending: storesLoading,
   } = useStores();
 
-  // Apply filters
+  // apply the search and price filters
   function handleSearch(event) {
     event.preventDefault();
 
@@ -43,7 +46,7 @@ function Explore() {
     }));
   }
 
-  // Update individual filters
+  // update a selected filter
   function handleFilterChange(event) {
     const { name, value } = event.target;
 
@@ -54,7 +57,7 @@ function Explore() {
     }));
   }
 
-  // Change page
+  // change the current page
   function changePage(newPage) {
     setFilters((current) => ({
       ...current,
@@ -65,7 +68,7 @@ function Explore() {
   return (
     <main className="mx-auto max-w-7xl px-6 py-12">
 
-      {/* Page heading */}
+      {/* page heading */}
       <div className="mb-10">
         <h1 className="text-4xl font-bold">
           Explore Games
@@ -76,10 +79,10 @@ function Explore() {
         </p>
       </div>
 
-      {/* Search and Filters */}
+      {/* search and filter form */}
       <form onSubmit={handleSearch} className="mb-10 space-y-5">
 
-        {/* Search bar */}
+        {/* game search bar */}
         <div className="flex gap-3">
 
           <div className="flex flex-1 items-center gap-3 rounded-lg border border-gray-700 bg-gray-800 px-4">
@@ -103,7 +106,7 @@ function Explore() {
 
         </div>
 
-        {/* Filters */}
+        {/* filter options */}
         <div className="flex flex-wrap items-end gap-4 rounded-xl border border-gray-700 bg-gray-800/50 p-5">
 
           <div className="flex items-center gap-2">
@@ -111,7 +114,7 @@ function Explore() {
             <span className="font-semibold">Filters</span>
           </div>
 
-          {/* Store filter */}
+          {/* filter by store */}
           <div className="flex flex-col gap-1">
             <label htmlFor="storeID" className="text-sm text-gray-400">
               Store
@@ -135,7 +138,7 @@ function Explore() {
             </select>
           </div>
 
-          {/* Price filter */}
+          {/* filter by maximum price */}
           <div className="flex flex-col gap-1">
             <label htmlFor="price" className="text-sm text-gray-400">
               Maximum price (USD)
@@ -154,7 +157,7 @@ function Explore() {
             />
           </div>
 
-          {/* Sorting */}
+          {/* sort the game results */}
           <div className="flex flex-col gap-1">
             <label htmlFor="sortBy" className="text-sm text-gray-400">
               Sort by
@@ -175,6 +178,7 @@ function Explore() {
             </select>
           </div>
 
+          {/* reset all filters */}
           <button
             type="button"
             onClick={() => {
@@ -196,28 +200,28 @@ function Explore() {
         </div>
       </form>
 
-      {/* Results heading */}
+      {/* results heading */}
       <div className="mb-6">
         <h2 className="text-xl font-semibold">
           Available Deals
         </h2>
       </div>
 
-      {/* Loading */}
+      {/* loading message */}
       {isPending && (
         <p className="py-16 text-center text-gray-400">
           Loading games...
         </p>
       )}
 
-      {/* Error */}
+      {/* error message */}
       {isError && (
         <div className="rounded-lg bg-red-500/10 p-6 text-center text-red-400">
           {error.message}
         </div>
       )}
 
-      {/* Game results */}
+      {/* display game results */}
       {!isPending && !isError && (
         <>
           {deals?.deals?.length > 0 ? (
@@ -243,7 +247,7 @@ function Explore() {
             </div>
           )}
 
-          {/* Pagination */}
+          {/* navigate between result pages */}
           <div className="mt-10 flex items-center justify-center gap-4">
 
             <button
@@ -274,4 +278,5 @@ function Explore() {
   );
 }
 
+// export the explore page
 export default Explore;

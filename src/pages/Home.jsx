@@ -1,27 +1,31 @@
+// import navigation links and icons
 import { Link } from "react-router-dom";
 import { ArrowRight, Gamepad2, Tag } from "lucide-react";
 
+// import components and data hooks
 import GameCard from "../components/GameCard";
 import { useDeals } from "../hooks/useDeals";
 
-
+// home page component
 function Home() {
-
+  // fetch featured game deals
   const { data, isPending, isError, error, refetch } = useDeals();
 
   return (
     <main className="mx-auto max-w-7xl px-6">
 
-      {/* Hero Section */}
+      {/* hero section */}
       <section className="flex min-h-[450px] flex-col justify-center py-20">
 
         <div className="max-w-3xl">
 
+          {/* short introduction */}
           <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-blue-500 px-4 py-2 text-sm text-blue-100">
             <Tag size={16} />
             Discover better game deals
           </div>
 
+          {/* main heading */}
           <h1 className="text-5xl font-extrabold leading-tight sm:text-6xl">
             Find Your Next Game.
             <span className="block text-[#66C0F4]">
@@ -29,12 +33,14 @@ function Home() {
             </span>
           </h1>
 
+          {/* description of the website */}
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-[#ADADAD]">
             Explore thousands of games and discover the
             best deals across different digital game stores.
             Spend less and play more.
           </p>
 
+          {/* link to explore games */}
           <Link
             to="/explore"
             className="mt-8 inline-flex items-center gap-2 rounded-lg bg-[#66C0F4] px-6 py-3 font-semibold hover:bg-[#006aff]"
@@ -47,8 +53,7 @@ function Home() {
 
       </section>
 
-
-      {/* Featured Section */}
+      {/* featured game deals section */}
       <section id="featured" className="pb-24">
 
         <div className="mb-8">
@@ -62,14 +67,14 @@ function Home() {
 
         </div>
 
-        {/* Loading State */}
+        {/* loading message */}
         {isPending && (
           <p className="py-12 text-center text-gray-400">
             Loading game deals...
           </p>
         )}
 
-        {/* Error State */}
+        {/* error message and retry button */}
         {isError && (
           <div className="rounded-xl border border-red-500/30 bg-red-500/10 p-8 text-center">
 
@@ -87,7 +92,7 @@ function Home() {
           </div>
         )}
 
-        {/* Successful API Response */}
+        {/* display featured games when data loads successfully */}
         {!isPending && !isError && (
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
 
@@ -100,7 +105,6 @@ function Home() {
 
           </div>
         )}
-        
 
       </section>
 
@@ -108,4 +112,5 @@ function Home() {
   );
 }
 
+// export the home page component
 export default Home;
